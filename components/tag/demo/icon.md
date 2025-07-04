@@ -41,6 +41,9 @@ const App: React.FC = () => (
     <Tag icon={<LinkedinOutlined />} color="#55acee">
       LinkedIn
     </Tag>
+    <Tag.CheckableTag icon={<LinkedinOutlined />} checked={true} color="#55acee">
+      LinkedIn
+    </Tag.CheckableTag>
   </>
 );
 

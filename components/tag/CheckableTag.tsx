@@ -12,6 +12,7 @@ export interface CheckableTagProps {
    * .zh-cn 该组件为完全受控组件，不支持非受控用法。
    */
   checked: boolean;
+  icon?: React.ReactNode;
   children?: React.ReactNode;
   onChange?: (checked: boolean) => void;
   onClick?: (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => void;
@@ -21,6 +22,7 @@ const CheckableTag: React.FC<CheckableTagProps> = ({
   prefixCls: customizePrefixCls,
   className,
   checked,
+  icon,
   onChange,
   onClick,
   ...restProps
@@ -41,8 +43,22 @@ const CheckableTag: React.FC<CheckableTagProps> = ({
     },
     className,
   );
+  const iconNode = icon || null;
 
-  return <span {...restProps} className={cls} onClick={handleClick} />;
+  const kids = iconNode ? (
+    <>
+      {iconNode}
+      <span>{restProps.children}</span>
+    </>
+  ) : (
+    restProps.children
+  );
+
+  return (
+    <span {...restProps} className={cls} onClick={handleClick}>
+      {kids}
+    </span>
+  );
 };
 
 export default CheckableTag;
